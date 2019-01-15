@@ -1,17 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[25]:
-
-
 from collections import Counter
 
 trainsize=6000
 testsize=len(tcategory)
-
-
-# In[26]:
-
 
 fname="news_train.txt"
 category=[]
@@ -24,15 +17,7 @@ with open(fname, encoding='utf-8') as f:
         
 content = [x.strip() for x in content]
 
-
-# In[ ]:
-
-
 names=list(set(category))
-
-
-# In[28]:
-
 
 #Выбираем индексы новостей данной темы из всех новостей
 def IndexSelect(name):
@@ -41,10 +26,6 @@ def IndexSelect(name):
         if (category[i]== name):
             I.append(i)
     return I
-
-
-# In[31]:
-
 
 # Общие слова тестовой новости и новостей данной темы
 def CommonWords(categ, testdic):
@@ -56,17 +37,9 @@ def CommonWords(categ, testdic):
                 testcounts[key]+=traindic[key]
     return (testcounts)
 
-
-# In[32]:
-
-
 #Вероятность темы 
 def Prior (categ):
     return (len(IndexSelect(categ))/len(category))
-
-
-# In[33]:
-
 
 #Считаем количество слов и формируем словарь темы
 def WordsnVoc(categ):
@@ -78,10 +51,6 @@ def WordsnVoc(categ):
         voc=list(set(voc+list(traindic.keys())))
     return (totalwords, voc)
 
-
-# In[34]:
-
-
 values=[]
 voc=[]
 for categ in names:
@@ -91,10 +60,6 @@ totalwords=dict(zip(names, values))
 voclength=len(voc) 
 print(voclength)  #Длина общего словаря
 print(totalwords) #Число слов в каждой теме 
-
-
-# In[35]:
-
 
 def Main(testdic):
     probs=[]
@@ -112,10 +77,6 @@ def Main(testdic):
         probs.append(p)
     val,idx=max((val, idx) for (idx, val) in enumerate(probs))
     return names[idx]
-
-
-# In[ ]:
-
 
 testfname="news_test.txt"
 tcontent=[]
