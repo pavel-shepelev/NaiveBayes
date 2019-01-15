@@ -4,7 +4,7 @@
 from collections import Counter
 
 trainsize=6000
-testsize=len(tcategory)
+testsize=15000
 
 fname="news_train.txt"
 category=[]
